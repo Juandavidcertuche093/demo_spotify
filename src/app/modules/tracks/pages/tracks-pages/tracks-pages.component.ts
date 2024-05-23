@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as data from '../../../../data/tracks.json' //es para todo lo que esta en el .traks.json este en (data)
 
 @Component({
   selector: 'app-tracks-pages',  
@@ -8,21 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class TracksPagesComponent implements OnInit {
 
   mockTracksList = [
-    {
-      name: 'BEBE (oficial)'
-    },
-    {
-      name: 'BEBE (oficial)'
-    },
-    {
-      name: 'BEBE (oficial)'
-    },
+  
   ]
 
   constructor () {}
 
   ngOnInit(): void {
-    
+    console.log(data)
   }
 
 }
