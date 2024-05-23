@@ -1,3 +1,6 @@
-h1 {
-    color: brown;
+.home-wrapper {
+    margin: 0 0 0 17.5rem; /*desplaza el elemento .home-wrapper 17.5rem hacia la derecha, lo cual es útil si tienes una barra lateral fija*/
+    background: rgb(23, 23, 26); /*Define un color de fondo sólido como una reserva inicial. Este color es oscuro, casi negro*/
+    background: linear-gradient(90deg, rgba(23, 23, 26, 1) 44%, rgba(24, 24, 24, 1) 100%); /*El degradado crea una transición suave de un tono oscuro a otro ligeramente diferente*/
+    min-height: 100vh; /*Asegura que el elemento .home-wrapper siempre cubra al menos la altura completa de la ventana*/
 }
