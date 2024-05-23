@@ -1,25 +1,27 @@
 .side-bar {
-    width: 15.5rem;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: .5rem 1rem;
+    width: 15.5rem; /*ancho*/
+    height: 100vh; /*altura*/
+    position: fixed; /*psocion fija a la izquierda*/
+    top: 0; /*anclada a la esquina superior izquierda*/
+    left: 0; /*anclada a la esquina superior izquierda*/
+    padding: .5rem 1rem; /*espacio interno alrededor del contenido*/
     /* background-color: red; */
 }
 
 .side-bar__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    opacity: .8;
+    list-style: none; /*sin enstilo de lista*/
+    padding: 0; /*sin espacio interno*/
+    margin: 0; /*sin margen*/
+    opacity: .8; /*opacidad 80%*/
 }
 
+/*define el tamaño y peso de la fuente del texto de los elementos de la lista*/
 .side-bar__list .list-label {
-    font-size: 90%;
-    font-weight: 500;
+    font-size: 90%; 
+    font-weight: 500; 
 }
 
+/*define el tamaño de la fuente y asegura que los elementos esten aliniados display, align-items*/
 .side-bar__list .list-wrapper-item {
     font-size: var(--font-size-1);
     font-weight: 500;
@@ -28,19 +30,23 @@
     align-content: center;
 }
 
+/*el tamaño de los iconos se ajusta font-size y se les añade un pading a la dereceha para separar con el texto*/
 .side-bar__list .list-wrapper-item .uil {
     font-size: var(--font-size-3);
     padding-right: .5rem;
 }
 
+/*estilos para los separadores entre listas*/
 .side-bar__separator {
     margin: 1rem 0;
 }
 
+/*añade una linea orizontal para un tipo especifico de separador*/
 .side-bar__separator.line-separator {
     border-bottom: solid 1px var(--color-2);
 }
 
+/*añade pading adicional a los elementos de esra lista especidica*/
 .side-bar__list.list-three .list-wrapper-item {
     padding: .25rem 0;
 }

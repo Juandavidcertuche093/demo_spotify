@@ -7,18 +7,19 @@ import { Router } from '@angular/router';
   styleUrl: './side-bar.component.css'
 })
 export class SideBarComponent implements OnInit{
-
+  // un Objeto que contiene arreglos(defaultOptions y accessLink) para las opciones de menu principal
   mainMenu: {
     defaultOptions: Array<any>,
     accessLink: Array<any>
   } = { defaultOptions: [], accessLink: [] }
-
+  // una arreglo que contiene opciones personalizadas 
   customOptions: Array<any> = []
 
   constructor (
     private router: Router
   ) {}
 
+  //se utiliza para llenar los arreglos (defaultOptions, accessLink y customOptions) con datos.
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
       {
@@ -70,7 +71,7 @@ export class SideBarComponent implements OnInit{
     ]
 
   }
-
+  // este metodo se utiliza pera la navegacion progrmamatica ruta (/favorites) parametros de consulta(queryParams)
   goTo($event: any): void {
     this.router.navigate(['/', 'favorites'], {
       queryParams: {
