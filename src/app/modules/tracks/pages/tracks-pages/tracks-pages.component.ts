@@ -9,14 +9,16 @@ import { TrackModel } from '../../../../core/models/tracks.model';
 })
 export class TracksPagesComponent implements OnInit {
 
-  mockTracksList: Array<TrackModel> = []
+  mockTracksList: Array<TrackModel> = [
+
+  ]
 
   
   constructor () {}
 
   ngOnInit(): void {
     const { data }: any = (dataRaw as any).default
-    this.mockTracksList = data   
+    this.mockTracksList = data;   
   }
 
 }
