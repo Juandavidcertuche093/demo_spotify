@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import {HeaderUserComponent} from './components/header-user/header-user.component';
 import {MediaPlayComponent} from './components/media-play/media-play.component';
@@ -8,6 +9,7 @@ import {CardPlayerComponent} from './components/card-player/card-player.componen
 import {SectionGenericaComponent} from './components/section-generica/section-generica.component';
 import { PlayListHeaderComponent } from './components/play-list-header/play-list-header.component';
 import { PlayListBodyComponent } from './components/play-list-body/play-list-body.component';
+
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
 
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[
     SideBarComponent,
