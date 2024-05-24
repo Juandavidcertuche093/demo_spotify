@@ -5,7 +5,9 @@ import {HeaderUserComponent} from './components/header-user/header-user.componen
 import {MediaPlayComponent} from './components/media-play/media-play.component';
 import {SideBarComponent} from './components/side-bar/side-bar.component';
 import {CardPlayerComponent} from './components/card-player/card-player.component';
-import {SectionGenericaComponent} from './components/section-generica/section-generica.component'
+import {SectionGenericaComponent} from './components/section-generica/section-generica.component';
+import { PlayListHeaderComponent } from './components/play-list-header/play-list-header.component';
+import { PlayListBodyComponent } from './components/play-list-body/play-list-body.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import {SectionGenericaComponent} from './components/section-generica/section-ge
     MediaPlayComponent,
     SideBarComponent,
     CardPlayerComponent,
-    SectionGenericaComponent
+    SectionGenericaComponent,
+    PlayListHeaderComponent,
+    PlayListBodyComponent
 
   ],
   imports: [
@@ -25,7 +29,9 @@ import {SectionGenericaComponent} from './components/section-generica/section-ge
     MediaPlayComponent,
     HeaderUserComponent,
     CardPlayerComponent,
-    SectionGenericaComponent
+    SectionGenericaComponent,
+    PlayListHeaderComponent,
+    PlayListBodyComponent
   ]
 })
 export class SharedModule { }
