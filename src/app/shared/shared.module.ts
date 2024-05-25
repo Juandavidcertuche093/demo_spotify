@@ -9,6 +9,7 @@ import {CardPlayerComponent} from './components/card-player/card-player.componen
 import {SectionGenericaComponent} from './components/section-generica/section-generica.component';
 import { PlayListHeaderComponent } from './components/play-list-header/play-list-header.component';
 import { PlayListBodyComponent } from './components/play-list-body/play-list-body.component';
+import {OrderListPipe} from './pipe/order-list.pipe'
 
 
 
@@ -20,12 +21,15 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
     CardPlayerComponent,
     SectionGenericaComponent,
     PlayListHeaderComponent,
-    PlayListBodyComponent
-
+    PlayListBodyComponent,
+    OrderListPipe
+    
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    
+
   ],
   exports:[
     SideBarComponent,
@@ -34,7 +38,8 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
     CardPlayerComponent,
     SectionGenericaComponent,
     PlayListHeaderComponent,
-    PlayListBodyComponent
+    PlayListBodyComponent,
+    OrderListPipe
   ]
 })
 export class SharedModule { }

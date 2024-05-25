@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren:() => import('./../favorites/favorites.module'). then((m) => m.FavoritesModule) //carga perezosa
   },
   {
-    path: 'history', // mosulo historia
+    path: 'history', // modulo historia
     loadChildren:() => import('./../history/history.module'). then((m) => m.HistoryModule) //carga perezosa
   },
 
