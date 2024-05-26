@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { TrackModel } from '../../../core/models/tracks.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environments';
 
