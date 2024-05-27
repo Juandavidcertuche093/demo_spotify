@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'history', // modulo historia
     loadChildren:() => import('./../history/history.module'). then((m) => m.HistoryModule) //carga perezosa
   },
+  {
+    path: '**',// para redireccionar a tracks cuando no exite la ruta
+    redirectTo: '/tracks'
+  }
 
 ];
 

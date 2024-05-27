@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TrackModel } from '../../../../core/models/tracks.model';
 import { TrackService } from '../../services/track.service';
 import { Subscription } from 'rxjs';
-import { response } from 'express';
+
 
 @Component({
   selector: 'app-tracks-pages',  
@@ -17,14 +17,26 @@ export class TracksPagesComponent implements OnInit, OnDestroy {
   listObservers$: Array<Subscription> = []
   
   constructor (
-    private trackServive: TrackService
+    private trackService: TrackService
   ) {}
 
   ngOnInit(): void {
-    this.trackServive.getAllTracks$()
-    .subscribe(response => {
-      console.log('👀👀👀---->',response)
-    })
+    this.loadDAtaAll()
+    this.loadDataRandom()
+  }
+  // 1 forma de hacerlo
+  async loadDAtaAll(): Promise<any> {
+   this.tracksTrending = await this.trackService.getAllTracks$().toPromise()
+       
+  }
+  // segunda forma de hacerlo
+  loadDataRandom(): void {
+    this.trackService.getAllRandom$()
+      .subscribe((response: TrackModel[]) => {
+        this.tracksRandom = response
+      }, err => {
+        console.log('Error de conexion 💀👻💀👻');        
+      })
   }
 
   ngOnDestroy(): void {
