@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TrackModel } from '../../../core/models/tracks.model';
 import { MultimediaService } from '../../services/multimedia.service';
 import { Subscription } from 'rxjs';
@@ -9,32 +9,52 @@ import { Subscription } from 'rxjs';
   styleUrl: './media-play.component.css'
 })
 export class MediaPlayComponent implements OnInit, OnDestroy {
-  mockCover: TrackModel = {
-    cover: 'https://www.adslzone.net/app/uploads-adslzone.net/2023/01/canciones-mas-usadas-reels.jpg?x=480&y=375&quality=40',
-    album: 'Gioli & assia',
-    name: 'BEBE (Oficial)',
-    url: 'http:/localhost/track.mp3',
-    _id: '1'
-  }
 
+  @ViewChild('progressBar') progressBar:ElementRef = new ElementRef('')
   listObservers$: Array<Subscription> = []
+  state: string = 'paused'
 
   constructor (
-    private multimediaService: MultimediaService
+    public multimediaService: MultimediaService
   ) {}
 
   ngOnInit(): void {
-    const observe1$: Subscription = this.multimediaService.callback.subscribe(
-      (response: TrackModel) => {
-        console.log('🎵🎶Recibiendo cancion......', response);
+
+    const observer1$ = this.multimediaService.payerStatus$
+      .subscribe(status => this.state = status)
+
+    this.listObservers$ = [observer1$]
+    
+    /* 
+    const observable1$ = this.multimediaService.myObservable1$
+    .subscribe(
+      (responseOK) => {
+        //next() => todo esta bn
+        console.log('😎 el agua llega perfecto!', responseOK);
+      },
+      (responseFail) => {
+        //error() => ocurre un error
+        console.log('🤬 se tapoo la tuberia', responseFail);
       }
     )
-    this.listObservers$ = [observe1$]
+    */
+
+
   }
 
   ngOnDestroy(): void {
     this.listObservers$.forEach(u => u.unsubscribe())
     //console.log('💣💣💣💣 BOOOM!')
+  }
+
+  handlePosition(event: MouseEvent): void {
+    const elNative: HTMLElement = this.progressBar.nativeElement
+    const { clientX } = event
+    const { x, width } = elNative.getBoundingClientRect()
+    const clickX = clientX - x // 1050 menos x
+    const percentajeFromX = (clickX * 100) / width
+    //console.log(`click(x) ${percentajeFromX}`);
+    this.multimediaService.seekAudio(percentajeFromX)
   }
 
 }
