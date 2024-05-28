@@ -43,6 +43,7 @@ export class LoginPageComponent implements OnInit {
     }, err => {
       this.errorSession = true
       console.log('Ocurrio un problema con tu password o Email');
+      alert('No tienes conexion con el servidor🚨')
     })
   }
 
