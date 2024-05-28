@@ -49,7 +49,6 @@ export class TrackService {
       /*map((dataRaw) => { //aplicar un filter comun de array
         return dataRaw.filter((track: TrackModel) => track._id !== 1)
       })*/
-      //tap(data => console.log('👍👍👍',data))
       catchError((err) => {
         const { status, statusText} = err;
         console.log('Algo paso revisame 🚨🚨', [status, statusText]);

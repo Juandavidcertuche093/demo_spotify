@@ -1,6 +1,7 @@
 import { Routes,  RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
 import { HomePagesComponent } from './modules/home/pages/home-pages/home-pages.component';
+import { SessionGuard } from './core/guards/session.guard';
 
 
 export const routes: Routes = [
@@ -12,7 +13,7 @@ export const routes: Routes = [
         path: '', // (privada) localhost:4200/ esta seria la raiz del proyecto 
         component: HomePagesComponent, //compoenete principal para esta ruta
         loadChildren:() => import('./modules/home/home.module'). then((m) => m.HomeModule), //carga perezosa
-        canActivate: []
+        canActivate: [SessionGuard]
     }
 ];
 
