@@ -8,6 +8,7 @@ import { TrackModel } from '../../../core/models/tracks.model';
 })
 export class SectionGenericaComponent implements OnInit {
 
+  //Decorador que indica que  pueden ser pasadas al componente desde su contenedor.  
   @Input() title: string = ''
   @Input() mode: 'small' | 'big' = 'big'
   @Input() dataTracks: Array<TrackModel> = []

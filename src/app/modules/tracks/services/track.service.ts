@@ -19,10 +19,9 @@ export class TrackService {
   ) { }
    
   /**
-   * 
-   * @returns Devolver todas las canciones! malonas 🎵🎵🎵
+   * En resumen, esta función es útil para filtrar una lista de pistas, 
+   * excluyendo aquella cuyo ID coincide con un ID dado
    */
-
   private skipById(listTracks: TrackModel[], id: number): Promise<TrackModel []> {
     return new Promise((resolve, rejects) => {
       const listTemp = listTracks.filter(a => a._id !== id)
@@ -51,7 +50,7 @@ export class TrackService {
       })*/
       catchError((err) => {
         const { status, statusText} = err;
-        console.log('Algo paso revisame 🚨🚨', [status, statusText]);
+        console.log('Algo paso revisame sin conexion 🚨🚨', [status, statusText]);
         // se colocaria otro servicio en esta parte en caso de error de un tercero para hacer trasavilidad de errores
         return of([])
       })

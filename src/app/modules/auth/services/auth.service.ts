@@ -29,7 +29,7 @@ export class AuthService {
    .pipe(
     tap((responseOK: any) => {
       const { tokenSession, data} = responseOK
-      this.cookie.set('token', tokenSession, 4, '/')
+      this.cookie.set('token', tokenSession, 1, '/')
       this.router.navigate(['/', 'tracks'])
     })
    )

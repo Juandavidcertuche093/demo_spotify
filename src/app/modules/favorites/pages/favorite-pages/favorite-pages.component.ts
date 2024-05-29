@@ -34,10 +34,10 @@ export class FavoritePagesComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy(): void {
-  console.log('Cancelando suscripciones...');// Cancelar todas las suscripciones
+  //console.log('Cancelando suscripciones...'); Cancelar todas las suscripciones
    this.listObservers$.forEach(sub => {
     sub.unsubscribe();
-    console.log('Suscripción cancelada:', sub);
+    //console.log('Suscripción cancelada:', sub);
    });
   }
 }
