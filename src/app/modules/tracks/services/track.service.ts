@@ -33,7 +33,7 @@ export class TrackService {
   getAllTracks$(): Observable<any>{
     return this.httpClient.get(`${this.URl}/tracks`)
     .pipe(
-      map(({ data }: any) => {
+      map(({ data }: any) => {//ransforma la respuesta de la petición HTTP para que el Observable emita directamente el contenido de data
         return data
       })
     )

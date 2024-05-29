@@ -27,3 +27,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class HomeRoutingModule { }
+
+/**
+ * definimos las rutas de los diferentes modulos (tracks, favorites, history)
+ * la barra lateral (sidebarCompoenet) facilita la navegacion a estas rutas
+ */

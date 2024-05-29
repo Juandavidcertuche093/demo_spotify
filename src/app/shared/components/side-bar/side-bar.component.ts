@@ -25,7 +25,7 @@ export class SideBarComponent implements OnInit{
       {
         name: 'Home',
         icon: 'uil uil-estate',
-        router: ['/', 'auth']
+        router: ['/', 'tracks']
       },
       {
         name: 'Buscar',
@@ -83,5 +83,10 @@ export class SideBarComponent implements OnInit{
     console.log($event)
   }
 }
+
+/**
+ * utiliza las rutas definidas en 'HomeRoutingModule' para navegar programaticamente.
+ * sidebar prporcian la interface de usurio para navegar entre estas rutas. 
+ */
   
 

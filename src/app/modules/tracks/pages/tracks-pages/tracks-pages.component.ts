@@ -24,18 +24,21 @@ export class TracksPagesComponent implements OnInit, OnDestroy {
     this.loadDAtaAll()
     this.loadDataRandom()
   }
-  // 1 forma de hacerlo
+  // 1 forma de hacerlo con una promesa
   async loadDAtaAll(): Promise<any> {
-   this.tracksTrending = await this.trackService.getAllTracks$().toPromise()
-       
+    try {
+      this.tracksTrending = await this.trackService.getAllTracks$().toPromise();       
+    } catch (error) {
+      console.error('Error en la conexion: 🛑🛑🛑', error);
+    } 
   }
-  // segunda forma de hacerlo
+  // segunda forma de hacerlo con un subscribe
   loadDataRandom(): void {
     this.trackService.getAllRandom$()
       .subscribe((response: TrackModel[]) => {
         this.tracksRandom = response
       }, err => {
-        console.log('Error de conexion 💀👻💀👻');        
+        console.log('Error de conexion 🛑🛑🛑');        
       })
   }
 
