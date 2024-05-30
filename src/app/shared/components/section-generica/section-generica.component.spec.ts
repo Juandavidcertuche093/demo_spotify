@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { SectionGenericaComponent } from './section-generica.component';
 
 describe('SectionGenericaComponent', () => {
@@ -8,7 +8,7 @@ describe('SectionGenericaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SectionGenericaComponent]
+      declarations: [SectionGenericaComponent]
     })
     .compileComponents();
     

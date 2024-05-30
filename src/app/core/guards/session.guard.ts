@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
@@ -10,9 +10,10 @@ export class SessionGuard  {
 
   constructor(
     private cookieService: CookieService,
-    private router: Router) {
+    private router: Router,    
+  ) { }
 
-  }
+ 
 
   canActivate(
     route: ActivatedRouteSnapshot,

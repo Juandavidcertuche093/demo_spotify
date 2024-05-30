@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HomePagesComponent } from './home-pages.component';
+import {HomeModule} from '../../home.module';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
 
 describe('HomePagesComponent', () => {
   let component: HomePagesComponent;
@@ -8,7 +13,20 @@ describe('HomePagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomePagesComponent]
+      imports: [ HttpClientTestingModule, FormsModule, HomeModule ],
+      declarations: [HomePagesComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: () => '1' // Simulando un valor para un parámetro de ruta
+              }
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
     
