@@ -26,6 +26,7 @@ export class AuthService {
       password
     }
    return this.http.post(`${this.URL}/auth/login`, body)
+    
    .pipe(
     tap((responseOK: any) => {
       const { tokenSession, data} = responseOK
@@ -33,6 +34,7 @@ export class AuthService {
       this.router.navigate(['/', 'tracks'])
     })
    )
+   
   }
 }
 
