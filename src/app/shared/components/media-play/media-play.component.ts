@@ -1,8 +1,10 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { TrackModel } from '../../../core/models/tracks.model';
 import { MultimediaService } from '../../services/multimedia.service';
-import { Subscription } from 'rxjs';
+import { Subscription, pipe } from 'rxjs';
 import { NgTemplateOutlet, NgIf, NgClass, AsyncPipe } from '@angular/common';
+import { takeUntilDestroyed} from '@angular/core/rxjs-interop'
+import { destroyCustome } from '../../../core/utils/destroyCustome';
 
 @Component({
     selector: 'app-media-play',
@@ -11,45 +13,24 @@ import { NgTemplateOutlet, NgIf, NgClass, AsyncPipe } from '@angular/common';
     standalone: true,
     imports: [NgTemplateOutlet, NgIf, NgClass, AsyncPipe]
 })
-export class MediaPlayComponent implements OnInit, OnDestroy {
+export class MediaPlayComponent implements OnInit {
 
-  @ViewChild('progressBar') progressBar:ElementRef = new ElementRef('')
-  listObservers$: Array<Subscription> = []
+  @ViewChild('progressBar') progressBar:ElementRef = new ElementRef('')  
   state: string = 'paused'
 
-  constructor (
-    public multimediaService: MultimediaService
-  ) {}
+  multimediaService = inject(MultimediaService)
+  destroyCustom = destroyCustome()
+   
 
   ngOnInit(): void {
-
-    const observer1$ = this.multimediaService.payerStatus$
-      .subscribe(status => this.state = status)
-
-    this.listObservers$ = [observer1$]
-    
-    /* 
-    const observable1$ = this.multimediaService.myObservable1$
-    .subscribe(
-      (responseOK) => {
-        //next() => todo esta bn
-        console.log('😎 el agua llega perfecto!', responseOK);
-      },
-      (responseFail) => {
-        //error() => ocurre un error
-        console.log('🤬 se tapoo la tuberia', responseFail);
-      }
-    )
-    */
-
-
+    this.multimediaService.payerStatus$
+    .pipe(this.destroyCustom())
+      .subscribe(
+        (status) => (this.state = status)
+      )    
   }
 
-  ngOnDestroy(): void {
-    this.listObservers$.forEach(u => u.unsubscribe())
-    //console.log('💣💣💣💣 BOOOM!')
-  }
-
+  
   handlePosition(event: MouseEvent): void {
     const elNative: HTMLElement = this.progressBar.nativeElement
     const { clientX } = event

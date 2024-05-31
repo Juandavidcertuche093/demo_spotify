@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomePagesComponent } from './modules/home/pages/home-pages/home-pages.component';
-import { SessionGuard } from './core/guards/session.guard';
 import { SessionGuardFunction } from './core/guards/sessionv2.guard';
 
 

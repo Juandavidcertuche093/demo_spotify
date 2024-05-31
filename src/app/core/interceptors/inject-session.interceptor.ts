@@ -10,7 +10,7 @@ export const injectSessionInterceptor: HttpInterceptorFn = (request: HttpRequest
     const newRequest = request.clone({
       setHeaders: {
         authorization: `Bearer ${token}`,
-        CUSTOM_HEADER: 'HOLA'
+        VERSION_ANGULAR: '17'
       }
     });
 
