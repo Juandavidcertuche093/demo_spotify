@@ -13,21 +13,20 @@ describe('HomePagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, FormsModule, HomeModule ],
-      declarations: [HomePagesComponent],
-      providers: [
+    imports: [HttpClientTestingModule, FormsModule, HomeModule, HomePagesComponent],
+    providers: [
         {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              paramMap: {
-                get: () => '1' // Simulando un valor para un parámetro de ruta
-              }
+            provide: ActivatedRoute,
+            useValue: {
+                snapshot: {
+                    paramMap: {
+                        get: () => '1' // Simulando un valor para un parámetro de ruta
+                    }
+                }
             }
-          }
         }
-      ]
-    })
+    ]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(HomePagesComponent);

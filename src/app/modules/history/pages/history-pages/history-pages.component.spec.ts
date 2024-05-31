@@ -11,9 +11,8 @@ describe('HistoryPagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule, HistoryModule],
-      declarations: [HistoryPagesComponent]
-    })
+    imports: [HttpClientTestingModule, FormsModule, HistoryModule, HistoryPagesComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(HistoryPagesComponent);

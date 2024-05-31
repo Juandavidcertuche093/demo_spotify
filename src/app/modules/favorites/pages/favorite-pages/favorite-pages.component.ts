@@ -3,11 +3,15 @@ import { TrackModel } from '../../../../core/models/tracks.model';
 import { FavoritesService } from '../../services/favorites.service';
 import { Subscription } from 'rxjs';
 import { subscribe } from 'diagnostics_channel';
+import { PlayListBodyComponent } from '../../../../shared/components/play-list-body/play-list-body.component';
+import { PlayListHeaderComponent } from '../../../../shared/components/play-list-header/play-list-header.component';
 
 @Component({
-  selector: 'app-favorite-pages',  
-  templateUrl: './favorite-pages.component.html',
-  styleUrl: './favorite-pages.component.css'
+    selector: 'app-favorite-pages',
+    templateUrl: './favorite-pages.component.html',
+    styleUrl: './favorite-pages.component.css',
+    standalone: true,
+    imports: [PlayListHeaderComponent, PlayListBodyComponent]
 })
 export class FavoritePagesComponent implements OnInit, OnDestroy {
 

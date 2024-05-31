@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { response } from 'express';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-login-page', 
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html',
+    styleUrl: './login-page.component.css',
+    standalone: true,
+    imports: [ReactiveFormsModule, NgIf]
 })
 export class LoginPageComponent implements OnInit {
 

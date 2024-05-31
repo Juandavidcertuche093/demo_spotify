@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: 'img[appImgBroken]',  
+    selector: 'img[appImgBroken]',
+    standalone: true,
 })
 export class ImgBrokenDirective {
   // HOST hace referencia al guesped esto nos sirve para cuando la url de una imagen no carge aparesca la imagen de error

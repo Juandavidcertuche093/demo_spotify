@@ -2,11 +2,14 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { TrackModel } from '../../../core/models/tracks.model';
 import { MultimediaService } from '../../services/multimedia.service';
 import { Subscription } from 'rxjs';
+import { NgTemplateOutlet, NgIf, NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-media-play', 
-  templateUrl: './media-play.component.html',
-  styleUrl: './media-play.component.css'
+    selector: 'app-media-play',
+    templateUrl: './media-play.component.html',
+    styleUrl: './media-play.component.css',
+    standalone: true,
+    imports: [NgTemplateOutlet, NgIf, NgClass, AsyncPipe]
 })
 export class MediaPlayComponent implements OnInit, OnDestroy {
 
