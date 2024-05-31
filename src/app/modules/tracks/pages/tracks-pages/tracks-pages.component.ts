@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { TrackModel } from '../../../../core/models/tracks.model';
-import { TrackService } from '../../services/track.service';
 import { Subscription } from 'rxjs';
 import { SectionGenericaComponent } from '../../../../shared/components/section-generica/section-generica.component';
 import { getAllRandom$, getAllTracks$ } from '../../services/trackv2.service';
