@@ -13,8 +13,8 @@ import { NgIf, NgClass } from '@angular/common';
 })
 export class CardPlayerComponent implements OnInit {
 
-  @Input() mode: 'small' | 'big' = 'small'
-  @Input() track: TrackModel = {_id: 0, name: '', album: '', url: '', cover: '' };
+  @Input({required: true}) mode: 'small' | 'big' = 'small'
+  @Input({required: true, alias:'trackObject'}) track: TrackModel = {_id: 0, name: '', album: '', url: '', cover: '' };
 
   constructor (
     private multimediaService: MultimediaService

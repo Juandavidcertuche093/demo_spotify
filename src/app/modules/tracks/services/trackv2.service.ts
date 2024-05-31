@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environments';
 import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TrackModel } from '../../../core/models/tracks.model';
+import { CookieService } from 'ngx-cookie-service';
 
 const URL = environment.api
 
@@ -39,4 +40,9 @@ export const getAllRandom$ = (): Observable<any> => {
       return of([])
     })
   )
+}
+
+export const getCurrentUser = ():string => {
+  const cookieService = inject(CookieService)
+  return cookieService.get('token')
 }

@@ -9,7 +9,7 @@ export const routes: Routes = [
         loadChildren:() => import('./modules/auth/auth.routes'). then((m) => m.AuthRoutes) //carga perezosa
     },
     {
-        path: '', // (privada) localhost:4200/ esta seria la raiz del proyecto 
+        path: '', // ruta privada!!! se nesecita cookie, token .... session
         component: HomePagesComponent, //compoenete principal para esta ruta
         loadChildren:() => import('./modules/home/home.routes'). then((m) => m.homeRoutes), //carga perezosa
         canActivate: [SessionGuardFunction]

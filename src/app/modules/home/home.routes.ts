@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
+import { currentUser } from '../../core/utils/getCurrenUser';
 
 
 export const homeRoutes: Routes = [
   {
     path: 'tracks', // modulo pistas
+    resolve:{
+      currentUser
+    },
     loadChildren:() => import('../tracks/tracks.routes'). then((m) => m.traksRoutes) //carga perezosa
   },
   {
