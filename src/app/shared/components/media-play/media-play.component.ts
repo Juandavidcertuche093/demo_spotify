@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, effect, inject } from '@angular/core';
 import { TrackModel } from '../../../core/models/tracks.model';
 import { MultimediaService } from '../../services/multimedia.service';
 import { Subscription, pipe } from 'rxjs';
@@ -13,7 +13,7 @@ import { destroyCustome } from '../../../core/utils/destroyCustome';
     standalone: true,
     imports: [NgTemplateOutlet, NgIf, NgClass, AsyncPipe]
 })
-export class MediaPlayComponent implements OnInit {
+export class MediaPlayComponent{
 
   @ViewChild('progressBar') progressBar:ElementRef = new ElementRef('')  
   state: string = 'paused'
@@ -21,16 +21,13 @@ export class MediaPlayComponent implements OnInit {
   multimediaService = inject(MultimediaService)
   destroyCustom = destroyCustome()
    
-
-  ngOnInit(): void {
-    this.multimediaService.payerStatus$
-    .pipe(this.destroyCustom())
-      .subscribe(
-        (status) => (this.state = status)
-      )    
+  constructor(){
+    effect(() =>{
+      const state = this.multimediaService.payerStatusSignal()
+      this.state = state
+    })
   }
-
-  
+   
   handlePosition(event: MouseEvent): void {
     const elNative: HTMLElement = this.progressBar.nativeElement
     const { clientX } = event
