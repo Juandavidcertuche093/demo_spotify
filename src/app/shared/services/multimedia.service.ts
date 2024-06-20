@@ -1,5 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
+import { EventEmitter, Injectable, effect, signal } from '@angular/core';
 import { TrackModel } from '../../core/models/tracks.model';
 
 @Injectable({
@@ -9,71 +8,24 @@ export class MultimediaService {
 
   callback: EventEmitter<any> = new EventEmitter<any>()
 
-  public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined)
-  public audio!: HTMLAudioElement // audio
-  public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00')
-  public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject('-00:00')
-  public payerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused')
-  public playPercentaje$: BehaviorSubject<number> = new BehaviorSubject(0)
+  public audio!: HTMLAudioElement // audio  
+  public trackInfoSignal = signal<TrackModel | undefined>(undefined)  
+  public timeElapsedSignal = signal<string>('00:00')  
+  public timeRemainingSignal = signal<string>('-00:00')  
+  public payerStatusSignal = signal<string>('paused')  
+  public playPercentajeSignal = signal<number>(0)
 
-
-  //myObservable1$: Observable<any> = new Observable
-  //myObservable1$: Subject<any> = new Subject()
-  //myObservable1$: BehaviorSubject<any> = new BehaviorSubject('👍👍👍👍')
-
-  constructor() { 
+   constructor() { 
 
     this.audio = new Audio()
 
-    this.trackInfo$.subscribe(responseOK => {
-      if (responseOK){
-        console.log('🎵🎵🎵🎵', responseOK);
-        this.setAudio(responseOK)
-      }      
+    effect(() => {
+      const dataInfo = this.trackInfoSignal()      
+      if(dataInfo) this.setAudio(dataInfo)
     })
 
-    this.listenAllEvents()
-
+    this.listenAllEvents()  
    
-    /*ejemplo de  BehaviorSubject
-    setTimeout(() => {
-      this.myObservable1$.next('👍👍👍👍')
-    }, 1000)
-    
-    setTimeout(() => {
-      this.myObservable1$.error('👎👎👎')
-    }, 3500)
-
-    /*ejemplo con Subjet
-    setTimeout(() => {
-      this.myObservable1$.next('👍👍👍👍')
-    }, 1000)
-    
-    setTimeout(() => {
-      this.myObservable1$.error('👎👎👎')
-    }, 3500)
-    */
-
-    /*ejemplo con observable
-    this.myObservable1$ = new Observable(
-      (observer: Observer<any>) => {
-        observer.next('👍')
-
-        setTimeout(() => {
-          observer.complete()
-        }, 1000)
-
-        setTimeout(() => {
-          observer.next('👍')
-        }, 2500)
-
-        setTimeout(() => {
-          observer.error('👎')
-        }, 3500)
-      }
-    )
-    */   
-
   }
 
   private listenAllEvents(): void {
@@ -85,24 +37,26 @@ export class MultimediaService {
     this.audio.addEventListener('ended',this.setPlayerStatus, false)
   }
 
+  // esta funcion se encarga de asignar el estado
   private setPlayerStatus = (state: any) => {
     //console.log('😎😎😎😎', state);
     switch (state.type) { // playing
       case 'play':
-        this.payerStatus$.next('play')
+        this.payerStatusSignal.set('play');
         break
       case 'playing':
-        this.payerStatus$.next('playing')
+        this.payerStatusSignal.set('playing');
         break
       case 'ended':
-        this.payerStatus$.next('ended')
+        this.payerStatusSignal.set('ended');
         break
       default:
-        this.payerStatus$.next('paused')
+        this.payerStatusSignal.set('paused');
         break;
     }    
   }
 
+  //esta funcion se encarga de hacer calculos matematicos
   private calcularTime = () => {
     //console.log('Disparamos evento')
     const { duration, currentTime } = this.audio //duration, currentTime estas propiedas son de HTMLAudioElement
@@ -112,12 +66,14 @@ export class MultimediaService {
     this.setPercentage(currentTime, duration)
   }
 
+  //calcula el porsentaje
   private setPercentage(currentTime: number, duration: number): void {
     //rregla de 3 (currenTime * 100 / duration)
     let percentaje = (currentTime * 10) / duration;
-    this.playPercentaje$.next(percentaje)
+    this.playPercentajeSignal.set(percentaje)
   }
 
+  //funcion que establece el tiempo
   private setTimeElapsed(currentTime: number): void {
     let seconds = Math.floor(currentTime % 60) // esta formula para obtener los segundosen numero entero 1,2,3
     let minutes = Math.floor((currentTime / 60) % 60) // para obtener minutos en enteros 1,2,3
@@ -126,9 +82,10 @@ export class MultimediaService {
     const displaySeconds = (seconds < 10 ) ? `0${seconds}` : seconds;
     const displayMinutes = (minutes < 10 ) ? `0${minutes}` : minutes;
     const displayFormat = `${displayMinutes}: ${displaySeconds}`
-    this.timeElapsed$.next(displayFormat)
+    this.timeElapsedSignal.set(displayFormat)
   }
 
+  // funcion del tiempo que resta el tiempo
   private setRemainin(currentTime: number, duration: number): void {
     let timeleft = duration - currentTime;
     let seconds = Math.floor(timeleft % 60) 
@@ -136,7 +93,7 @@ export class MultimediaService {
     const displaySeconds = (seconds < 10 ) ? `0${seconds}` : seconds;
     const displayMinutes = (minutes < 10 ) ? `0${minutes}` : minutes;
     const displayFormat = `-${displayMinutes}: ${displaySeconds}`
-    this.timeRemaining$.next(displayFormat)
+    this.timeRemainingSignal.set(displayFormat)
 
   }  
 

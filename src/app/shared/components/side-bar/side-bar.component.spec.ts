@@ -10,15 +10,14 @@ describe('SideBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SideBarComponent],
-      providers: [
+    providers: [
         {
-          provide: ActivatedRoute,
-          useValue: { snapshot: { paramMap: { get: () => '1' } } } // Provide a mock ActivatedRoute
+            provide: ActivatedRoute,
+            useValue: { snapshot: { paramMap: { get: () => '1' } } } // Provide a mock ActivatedRoute
         }
-      ],
-      imports: [FormsModule, RouterModule]
-    })
+    ],
+    imports: [FormsModule, RouterModule, SideBarComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(SideBarComponent);

@@ -1,10 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TrackModel } from '../../../core/models/tracks.model';
+import { CardPlayerComponent } from '../card-player/card-player.component';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-section-generica',  
-  templateUrl: './section-generica.component.html',
-  styleUrl: './section-generica.component.css'
+    selector: 'app-section-generica',
+    templateUrl: './section-generica.component.html',
+    styleUrl: './section-generica.component.css',
+    standalone: true,
+    imports: [NgClass, NgFor, CardPlayerComponent]
 })
 export class SectionGenericaComponent implements OnInit {
 

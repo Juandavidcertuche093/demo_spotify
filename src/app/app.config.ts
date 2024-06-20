@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import {provideHttpClient, withInterceptors, withFetch} from '@angular/common/http' //para hacer el llamado a la Api
 import { CookieService } from 'ngx-cookie-service';
 
@@ -9,7 +9,7 @@ import { injectSessionInterceptor } from './core/interceptors/inject-session.int
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(),
+  providers: [provideRouter(routes, withComponentInputBinding()), provideClientHydration(),
     provideHttpClient(withInterceptors([injectSessionInterceptor]),withFetch()),
     CookieService,
        
